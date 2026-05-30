@@ -51,24 +51,40 @@ export default function AttorneysPage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container-site space-y-12">
-          {team.map((t) => (
-            <div key={t.name} className="bg-white rounded-2xl p-8 md:p-12 border border-black/5">
-              <div className="flex flex-col md:flex-row md:items-start gap-6">
-                <div className="w-20 h-20 rounded-full bg-navy-light flex items-center justify-center text-3xl text-gold shrink-0">
-                  {t.name.charAt(0)}
+      <section className="py-20 bg-cream">
+        <div className="container-site">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {team.map((t) => (
+              <div
+                key={t.name}
+                className="bg-white rounded-2xl p-8 border border-black/5 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col items-center"
+              >
+                {/* Avatar */}
+                <div className="w-24 h-24 rounded-full border-2 border-gold/40 bg-cream-warm flex items-center justify-center mb-5 shrink-0">
+                  <span className="font-serif font-bold text-navy text-2xl">
+                    {t.name.split(" ").map((n: string) => n[0]).slice(0, 2).join("")}
+                  </span>
                 </div>
-                <div className="flex-1">
-                  <h2 className="text-3xl text-navy mb-1">{t.name}</h2>
-                  {t.bar && <p className="text-gold text-sm font-semibold mb-1">{t.bar}</p>}
-                  <p className="text-ink/70 font-medium mb-1">{t.role}</p>
-                  <p className="text-ink/50 text-sm mb-4">{t.years}</p>
-                  <p className="text-ink/70 leading-relaxed max-w-3xl">{t.bio}</p>
-                </div>
+
+                {/* Name */}
+                <h2 className="text-xl font-bold text-navy mb-2">{t.name}</h2>
+
+                {/* Bar badge */}
+                {t.bar && (
+                  <span className="inline-block bg-gold/10 text-gold/80 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                    {t.bar}
+                  </span>
+                )}
+
+                {/* Role */}
+                <p className="text-navy/80 font-semibold text-sm mb-1">{t.role}</p>
+                <p className="text-ink/50 text-xs mb-4">{t.years}</p>
+
+                {/* Bio */}
+                <p className="text-ink/65 text-sm leading-relaxed">{t.bio}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

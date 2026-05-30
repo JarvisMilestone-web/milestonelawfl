@@ -5,17 +5,22 @@ const slides = [
   {
     id: 1,
     src: "/images/family-4.png",
-    alt: "South Florida family meeting with estate planning attorney",
+    alt: "South Florida couple meeting with estate planning attorney",
   },
   {
     id: 2,
+    src: "/images/family-jewish-consultation.png",
+    alt: "Family signing estate plan at Muroff, Milestone & Milestone",
+  },
+  {
+    id: 3,
     src: "/images/family-1.png",
     alt: "Multi-generational family estate planning consultation",
   },
   {
-    id: 3,
+    id: 4,
     src: "/images/family-7.png",
-    alt: "Family reviewing estate documents with attorney",
+    alt: "Family reviewing estate documents with South Florida attorney",
   },
 ];
 
@@ -25,7 +30,7 @@ export default function HeroSlider() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((c) => (c + 1) % slides.length);
-    }, 5000);
+    }, 5500);
     return () => clearInterval(timer);
   }, []);
 
@@ -34,7 +39,7 @@ export default function HeroSlider() {
       {slides.map((slide, i) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1500 ${
+          className={`absolute inset-0 transition-opacity duration-[1500ms] ${
             i === current ? "opacity-100" : "opacity-0"
           }`}
           aria-hidden={i !== current}
@@ -45,8 +50,7 @@ export default function HeroSlider() {
             alt={slide.alt}
             className="w-full h-full object-cover object-center"
           />
-          {/* Gradient overlay — dark at bottom, semi-dark overall for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/50 to-navy/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/50 to-navy/25" />
         </div>
       ))}
 
