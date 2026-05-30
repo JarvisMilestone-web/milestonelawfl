@@ -36,6 +36,13 @@ const team = [
     years: "Fluent in Russian and Ukrainian",
     bio: "Tetyana is the operational backbone of the firm and Milestone Title. Her expertise in legal document processing, title work, and client communications — combined with her fluency in Russian and Ukrainian — makes her an essential resource for South Florida's diverse communities.",
   },
+  {
+    name: "Eric Milestone",
+    bar: "",
+    role: "Director of Marketing & Client Acquisition",
+    years: "Driving growth and client experience",
+    bio: "Eric leads the firm's marketing strategy and client acquisition efforts, ensuring that families across South Florida can easily find and access the legal services they need. His focus on client experience and modern outreach has been instrumental in connecting the firm with the next generation of clients.",
+  },
 ];
 
 export default function AttorneysPage() {

@@ -68,6 +68,32 @@ export default function RealEstateLawPage() {
         </div>
       </section>
 
+      {/* Photo section */}
+      <section className="py-20 bg-cream">
+        <div className="container-site">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-black/5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/family-6.png"
+                alt="Family completing real estate closing with South Florida attorneys"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-4xl text-navy font-serif mb-6">Closings Done Right</h2>
+              <p className="text-ink/70 leading-relaxed mb-4">
+                Whether you&apos;re buying your first home or transferring property to the next generation, our attorneys ensure every closing is handled with precision, care, and full legal protection.
+              </p>
+              <p className="text-ink/70 leading-relaxed mb-6">
+                With decades of experience in Broward and Miami-Dade real estate, we&apos;ve seen it all — and we&apos;re here to make sure your transaction goes smoothly from contract to keys.
+              </p>
+              <a href="/schedule/" className="btn-gold inline-block">Schedule Free Consultation</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CTABanner />
 
       <script

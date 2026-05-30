@@ -62,6 +62,32 @@ export default function TitleCompanyPage() {
         </div>
       </section>
 
+      {/* Photo section */}
+      <section className="py-20 bg-cream">
+        <div className="container-site">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl text-navy font-serif mb-6">Trusted Title Services for Every Transaction</h2>
+              <p className="text-ink/70 leading-relaxed mb-4">
+                From first-time homebuyers to seasoned investors, Milestone Title provides the expertise and attention to detail that South Florida real estate demands.
+              </p>
+              <p className="text-ink/70 leading-relaxed mb-6">
+                Our attorney-owned title company means you get legal-grade precision at every step — title search, insurance, closing, and recording.
+              </p>
+              <a href="/schedule/" className="btn-gold inline-block">Get a Title Quote</a>
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-black/5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/family-8.png"
+                alt="Family receiving keys at real estate closing with Milestone Title"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CTABanner title="Need Title Services?" subtitle="Contact us for a quote on title insurance, title searches, or closing coordination." />
 
       <script

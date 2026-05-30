@@ -34,9 +34,9 @@ const packages = [
       { name: "Last Will & Testament", price: "$595" },
       { name: "Revocable Living Trust — Individual", price: "$1,750" },
       { name: "Revocable Living Trust — Joint", price: "$2,000" },
-      { name: "Power of Attorney", price: "$395" },
-      { name: "Healthcare Power of Attorney", price: "$395" },
-      { name: "Advanced Medical Directives / Living Will", price: "$295" },
+      { name: "Power of Attorney", price: "$395", note: "$225 when added to a package" },
+      { name: "Healthcare Power of Attorney", price: "$395", note: "$225 when added to a package" },
+      { name: "Advanced Medical Directives / Living Will", price: "$295", note: "$225 when added to a package" },
     ],
   },
   {
