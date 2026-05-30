@@ -1,5 +1,11 @@
 "use client";
 import { useState, FormEvent } from "react";
+
+// ⚠️ REQUIRED: Replace with your Formspree form ID
+// 1. Go to https://formspree.io → Sign up free → Create form
+// 2. Set the recipient email to the firm's intake address
+// 3. Copy the form ID (e.g. "xpwzabcd") and paste below
+const FORMSPREE_ID = "YOUR_FORM_ID"; // ← Commander: replace this
 const contactInfo = [
   { icon: "📍", label: "Address", value: "100 North Federal Highway, Suite 200\nHallandale Beach, FL 33009" },
   { icon: "📞", label: "Phone", value: "954.454.4522 · 305.682.2324", href: "tel:9544544522" },
@@ -10,9 +16,31 @@ const contactInfo = [
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(e: FormEvent) {
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    const form = e.target as HTMLFormElement;
+    const data = new FormData(form);
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please call us instead.");
+      }
+    } catch {
+      setError("Network error. Please call us instead.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -73,23 +101,27 @@ export default function ContactPage() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-navy mb-1">First Name</label>
-                    <input type="text" required className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30" />
+                    <input name="firstName" type="text" required className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-navy mb-1">Last Name</label>
-                    <input type="text" required className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30" />
+                    <input name="lastName" type="text" required className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30" />
                   </div>
                 </div>
                 <div>
+                  <label className="block text-sm font-medium text-navy mb-1">Email</label>
+                  <input name="email" type="email" required className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30" />
+                </div>
+                <div>
                   <label className="block text-sm font-medium text-navy mb-1">Phone</label>
-                  <input type="tel" className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30" />
+                  <input name="phone" type="tel" className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-navy mb-1">How Can We Help?</label>
-                  <select className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30 bg-white">
+                  <select name="topic" className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30 bg-white">
                     <option value="">Select a topic...</option>
-                    <option>Wills &amp; Estate Planning</option>
-                    <option>Trusts &amp; Asset Protection</option>
+                    <option>Wills & Estate Planning</option>
+                    <option>Trusts & Asset Protection</option>
                     <option>Real Estate Law</option>
                     <option>Title Services</option>
                     <option>Other</option>
@@ -97,9 +129,12 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-navy mb-1">Message</label>
-                  <textarea rows={5} required className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30 resize-none" />
+                  <textarea name="message" rows={5} required className="w-full rounded-lg border border-black/10 px-4 py-3 text-ink focus:outline-none focus:ring-2 focus:ring-gold/30 resize-none" />
                 </div>
-                <button type="submit" className="btn-gold w-full justify-center">Send Message</button>
+                {error && <p className="text-red-600 text-sm text-center">{error}</p>}
+                <button type="submit" disabled={loading} className="btn-gold w-full justify-center disabled:opacity-50">
+                  {loading ? "Sending..." : "Send Message"}
+                </button>
                 <p className="text-ink/40 text-xs text-center">
                   Submitting this form does not create an attorney-client relationship.
                 </p>
