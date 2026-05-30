@@ -1,96 +1,94 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Schedule a Free Consultation — Muroff, Milestone & Milestone, P.A.",
   description:
-    "Book your free 30-minute consultation with our attorneys. Available in English, Spanish, Russian, and Ukrainian.",
+    "Schedule your free consultation with Muroff, Milestone & Milestone. Estate planning, wills, trusts, real estate law. No obligation. Flat-fee pricing.",
 };
+
+const BOOKING_URL = "https://tbm.0d8.myftpupload.com/schedule/";
 
 export default function SchedulePage() {
   return (
     <>
       <section className="section-navy py-20">
         <div className="container-site text-center">
-          <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-4">Book Now</p>
-          <h1 className="text-5xl md:text-6xl text-white mb-4">Schedule a Free Consultation</h1>
+          <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-4">
+            Free Consultation
+          </p>
+          <h1 className="text-5xl md:text-6xl text-white mb-4">
+            Schedule Your Free Consultation
+          </h1>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Meet with our attorneys to discuss your estate planning, real estate, or title needs — at no cost and no obligation.
+            No obligation, no pressure. We&apos;ll review your situation and give you a clear
+            flat-fee quote before you decide anything.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Info cards */}
+      <section className="py-16 bg-cream">
         <div className="container-site">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="bg-cream-warm rounded-2xl p-8 sticky top-24">
-                <h3 className="text-xl text-navy mb-6">Consultation Details</h3>
-                <ul className="space-y-4 text-ink/70">
-                  <li className="flex items-start gap-3">
-                    <span className="text-gold text-xl">⏱</span>
-                    <div>
-                      <p className="font-semibold text-navy">30 Minutes</p>
-                      <p className="text-sm">Enough time to understand your needs and outline a plan</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-gold text-xl">💰</span>
-                    <div>
-                      <p className="font-semibold text-navy">Completely Free</p>
-                      <p className="text-sm">No cost, no obligation, no pressure</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-gold text-xl">🌐</span>
-                    <div>
-                      <p className="font-semibold text-navy">4 Languages</p>
-                      <p className="text-sm">English, Spanish, Russian, Ukrainian</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-gold text-xl">📞</span>
-                    <div>
-                      <p className="font-semibold text-navy">Prefer to Call?</p>
-                      <p className="text-sm">
-                        <a href="tel:9544544522" className="text-gold hover:text-gold-light">954.454.4522</a>
-                        {" · "}
-                        <a href="tel:3056822324" className="text-gold hover:text-gold-light">305.682.2324</a>
-                      </p>
-                    </div>
-                  </li>
-                </ul>
+          <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
+            {[
+              { icon: "⏱️", title: "30 Minutes", desc: "Quick, focused consultation to understand your needs" },
+              { icon: "💰", title: "100% Free", desc: "No fees, no obligation — just honest legal guidance" },
+              { icon: "🌐", title: "4 Languages", desc: "English, Spanish, Russian, or Ukrainian" },
+            ].map((item) => (
+              <div key={item.title} className="bg-white rounded-2xl p-6 border border-black/5 text-center">
+                <span className="text-3xl block mb-3">{item.icon}</span>
+                <h3 className="font-bold text-navy mb-1">{item.title}</h3>
+                <p className="text-ink/60 text-sm">{item.desc}</p>
               </div>
+            ))}
+          </div>
+
+          {/* Primary booking CTA */}
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="bg-white rounded-2xl p-10 border border-black/5 shadow-sm mb-8">
+              <h2 className="text-3xl text-navy font-serif mb-4">Pick a Date &amp; Time</h2>
+              <p className="text-ink/60 mb-8">
+                Click below to open our booking calendar. Select an available slot and
+                you&apos;ll receive a confirmation email immediately.
+              </p>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold text-lg px-10 py-5 inline-block"
+              >
+                Open Booking Calendar →
+              </a>
+              <p className="text-ink/40 text-xs mt-4">Opens in a new window</p>
             </div>
 
-            {/* Booking iframe */}
-            <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl border border-black/5 overflow-hidden">
-                <iframe
-                  src="https://tbm.0d8.myftpupload.com/schedule/"
-                  title="Schedule a Consultation"
-                  className="w-full border-0"
-                  style={{ minHeight: "700px" }}
-                  loading="lazy"
-                />
-              </div>
-              <p className="text-center mt-4">
-                <a
-                  href="https://tbm.0d8.myftpupload.com/schedule/"
-                  className="text-gold hover:text-gold-light text-sm font-medium"
-                >
-                  Having trouble? Open scheduling page directly →
+            {/* Phone alternative */}
+            <div className="bg-navy rounded-2xl p-8 text-center">
+              <p className="text-white/70 mb-3">Prefer to call us directly?</p>
+              <div className="flex gap-6 justify-center">
+                <a href="tel:9544544522" className="text-gold font-bold text-xl hover:text-gold-light transition-colors">
+                  954.454.4522
                 </a>
-              </p>
+                <span className="text-white/30 text-xl">|</span>
+                <a href="tel:3056822324" className="text-gold font-bold text-xl hover:text-gold-light transition-colors">
+                  305.682.2324
+                </a>
+              </div>
+              <p className="text-white/40 text-sm mt-3">Mon–Fri 9:00am–5:00pm · Evenings & weekends by appointment</p>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="container-site pb-12">
-        <p className="text-ink/40 text-xs text-center max-w-2xl mx-auto">
-          Scheduling a consultation does not create an attorney-client relationship. Information shared during the consultation is kept confidential.
-        </p>
+      {/* Disclaimer */}
+      <div className="bg-cream-warm py-6">
+        <div className="container-site text-center">
+          <p className="text-ink/40 text-xs max-w-2xl mx-auto">
+            Scheduling a consultation does not create an attorney-client relationship.
+            Information shared during the consultation is kept confidential.
+          </p>
+        </div>
       </div>
     </>
   );
