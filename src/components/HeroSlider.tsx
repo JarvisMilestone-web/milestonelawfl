@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const slides = [
   {
@@ -26,41 +26,90 @@ const slides = [
 
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+  const [transitioning, setTransitioning] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Preload all images on mount — eliminates blink on first show
+  useEffect(() => {
+    slides.forEach((slide) => {
+      const img = new window.Image();
+      img.src = slide.src;
+    });
+  }, []);
+
+  const goTo = (next: number) => {
+    if (transitioning) return;
+    setPrev(current);
+    setTransitioning(true);
+    setCurrent(next);
+    // Clear "prev" after transition completes
+    setTimeout(() => {
+      setPrev(null);
+      setTransitioning(false);
+    }, 1800);
+  };
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((c) => (c + 1) % slides.length);
+    timerRef.current = setInterval(() => {
+      setCurrent((c) => {
+        const next = (c + 1) % slides.length;
+        setPrev(c);
+        setTransitioning(true);
+        setTimeout(() => {
+          setPrev(null);
+          setTransitioning(false);
+        }, 1800);
+        return next;
+      });
     }, 5500);
-    return () => clearInterval(timer);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      {slides.map((slide, i) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-[1500ms] ${
-            i === current ? "opacity-100" : "opacity-0"
-          }`}
-          aria-hidden={i !== current}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={slide.src}
-            alt={slide.alt}
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/50 to-navy/25" />
-        </div>
-      ))}
+    <div className="absolute inset-0 overflow-hidden bg-navy">
+      {/* Render all slides — use z-index + opacity for seamless crossfade */}
+      {slides.map((slide, i) => {
+        const isCurrent = i === current;
+        const isPrev = i === prev;
+
+        return (
+          <div
+            key={slide.id}
+            className="absolute inset-0"
+            style={{
+              zIndex: isCurrent ? 2 : isPrev ? 1 : 0,
+              opacity: isCurrent ? 1 : 0,
+              transition: isCurrent
+                ? "opacity 1800ms ease-in-out"
+                : isPrev
+                ? "opacity 1800ms ease-in-out"
+                : "none",
+              willChange: "opacity",
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={slide.src}
+              alt={slide.alt}
+              className="w-full h-full object-cover object-center"
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchPriority={i === 0 ? "high" : "low"}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/45 to-navy/20" />
+          </div>
+        );
+      })}
 
       {/* Slide indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {slides.map((_, i) => (
           <button
             key={i}
-            onClick={() => setCurrent(i)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
+            onClick={() => goTo(i)}
+            className={`h-1.5 rounded-full transition-all duration-500 ${
               i === current ? "bg-gold w-8" : "bg-white/40 w-2"
             }`}
             aria-label={`Slide ${i + 1}`}
