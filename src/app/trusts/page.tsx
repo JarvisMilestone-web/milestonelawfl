@@ -73,6 +73,33 @@ export default function TrustsPage() {
         </div>
       </section>
 
+      
+      {/* Photo section */}
+      <section className="py-20 bg-cream">
+        <div className="container-site">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl text-navy font-serif mb-6">Protecting Your Family&apos;s Future Together</h2>
+              <p className="text-ink/70 leading-relaxed mb-4">
+                A Revocable Living Trust is one of the most powerful tools available to Florida families. Assets held in trust pass directly to your beneficiaries — no probate, no court, no public record.
+              </p>
+              <p className="text-ink/70 leading-relaxed mb-6">
+                Whether you have a blended family, own real estate, or simply want privacy and efficiency, our trust packages are comprehensive, flat-fee, and designed around your specific goals.
+              </p>
+              <a href="/schedule/" className="btn-gold inline-block">Schedule Free Consultation</a>
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-black/5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/family-2.png"
+                alt="Family discussing trust planning with South Florida attorneys"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CTABanner />
 
       <script

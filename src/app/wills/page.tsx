@@ -90,6 +90,33 @@ export default function WillsPage() {
         </div>
       </section>
 
+      
+      {/* Photo section */}
+      <section className="py-20 bg-cream">
+        <div className="container-site">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-black/5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/family-5.png"
+                alt="Family reviewing estate planning documents with attorney"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-4xl text-navy font-serif mb-6">Florida Requires It Done Right</h2>
+              <p className="text-ink/70 leading-relaxed mb-4">
+                Florida law requires two witnesses and notarization for a will to be self-proving. An improperly executed will can be challenged — or worse, invalidated — leaving your family unprotected.
+              </p>
+              <p className="text-ink/70 leading-relaxed mb-6">
+                Our attorneys handle every detail of the execution ceremony at our Hallandale Beach office, ensuring your documents meet all Florida statutory requirements.
+              </p>
+              <a href="/schedule/" className="btn-gold inline-block">Schedule Free Consultation</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CTABanner />
 
       <script

@@ -201,6 +201,39 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      {/* Featured Photo — Real consultation at the firm */}
+      <section className="py-20 bg-navy overflow-hidden">
+        <div className="container-site">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-gold text-sm font-semibold uppercase tracking-widest mb-4">Real Families. Real Attorneys.</p>
+              <h2 className="text-4xl md:text-5xl text-white font-serif mb-6 leading-tight">
+                Your Plan, Reviewed<br />
+                <span className="text-gold-light">By a Real Attorney</span>
+              </h2>
+              <p className="text-white/65 text-lg leading-relaxed mb-6">
+                Every estate plan we prepare is personally reviewed and signed by a licensed Florida attorney — not a paralegal, not a call center. We sit down with your family, answer every question, and make sure you leave with a plan you understand.
+              </p>
+              <p className="text-white/65 leading-relaxed mb-8">
+                Flat-fee pricing. Free consultation. No surprises.
+              </p>
+              <a href="/schedule/" className="btn-gold text-base px-8 py-4 inline-block">
+                Schedule Your Free Consultation
+              </a>
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-2xl border border-gold/20">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/family-jewish-consultation.png"
+                alt="Family signing estate plan at Muroff, Milestone & Milestone"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Attorney Preview */}
       <section className="py-20 bg-cream-warm">
         <div className="container-site">

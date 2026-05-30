@@ -4,25 +4,23 @@ import { useEffect, useState } from "react";
 const slides = [
   {
     id: 1,
-    // Replace src with real image path when Commander provides photos
-    src: "/images/hero-1.jpg",
-    fallback: "bg-gradient-to-br from-navy via-[#1a2d4a] to-[#0b1a2e]",
+    src: "/images/family-4.png",
+    alt: "South Florida family meeting with estate planning attorney",
   },
   {
     id: 2,
-    src: "/images/hero-2.jpg",
-    fallback: "bg-gradient-to-br from-[#1a2d4a] via-navy to-[#0d1e35]",
+    src: "/images/family-1.png",
+    alt: "Multi-generational family estate planning consultation",
   },
   {
     id: 3,
-    src: "/images/hero-3.jpg",
-    fallback: "bg-gradient-to-br from-[#0d1e35] via-[#1a2d4a] to-navy",
+    src: "/images/family-7.png",
+    alt: "Family reviewing estate documents with attorney",
   },
 ];
 
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
-  const [loaded, setLoaded] = useState<boolean[]>(slides.map(() => false));
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -36,40 +34,30 @@ export default function HeroSlider() {
       {slides.map((slide, i) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
+          className={`absolute inset-0 transition-opacity duration-1500 ${
             i === current ? "opacity-100" : "opacity-0"
-          } ${slide.fallback}`}
+          }`}
+          aria-hidden={i !== current}
         >
-          {/* Real image — will show when Commander uploads photos */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={slide.src}
-            alt=""
-            className={`w-full h-full object-cover transition-opacity duration-500 ${
-              loaded[i] ? "opacity-100" : "opacity-0"
-            }`}
-            onLoad={() => {
-              const newLoaded = [...loaded];
-              newLoaded[i] = true;
-              setLoaded(newLoaded);
-            }}
-            onError={() => {
-              // Image not found — fallback gradient shows
-            }}
+            alt={slide.alt}
+            className="w-full h-full object-cover object-center"
           />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/50" />
+          {/* Gradient overlay — dark at bottom, semi-dark overall for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/50 to-navy/30" />
         </div>
       ))}
 
       {/* Slide indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              i === current ? "bg-gold w-6" : "bg-white/40"
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === current ? "bg-gold w-8" : "bg-white/40 w-2"
             }`}
             aria-label={`Slide ${i + 1}`}
           />
