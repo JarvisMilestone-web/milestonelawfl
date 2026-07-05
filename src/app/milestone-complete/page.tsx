@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 // Milestone Title's dedicated platform. Flip to https://milestonetitlefl.com
 // once DNS is attached — one-line change.
-const TITLE_SITE = "https://milestonetitlefl.vercel.app";
+const TITLE_SITE = "https://milestonetitlefl.com";
 
 const pillars = [
   {
