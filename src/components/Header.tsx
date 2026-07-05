@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/trusts/", label: "Trusts" },
   { href: "/real-estate-law/", label: "Real Estate" },
   { href: "/title-company/", label: "Title Company" },
+  { href: "/milestone-complete/", label: "The Complete ✦", gold: true },
   { href: "/pricing/", label: "Pricing" },
   { href: "/faq/", label: "FAQ" },
 ];
@@ -33,7 +34,11 @@ export default function Header() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-white/70 hover:text-white text-sm font-medium px-3 py-2 rounded-lg transition-colors whitespace-nowrap"
+                className={
+                  l.gold
+                    ? "text-gold-light hover:text-white text-sm font-semibold px-3 py-2 rounded-lg transition-colors whitespace-nowrap"
+                    : "text-white/70 hover:text-white text-sm font-medium px-3 py-2 rounded-lg transition-colors whitespace-nowrap"
+                }
               >
                 {l.label}
               </Link>
@@ -75,7 +80,11 @@ export default function Header() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="text-white text-2xl font-serif py-3 border-b border-white/10 block hover:text-gold-light transition-colors no-underline"
+                  className={
+                    l.gold
+                      ? "text-gold-light text-2xl font-serif py-3 border-b border-white/10 block hover:text-white transition-colors no-underline"
+                      : "text-white text-2xl font-serif py-3 border-b border-white/10 block hover:text-gold-light transition-colors no-underline"
+                  }
                 >
                   {l.label}
                 </Link>
