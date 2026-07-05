@@ -2,16 +2,31 @@ import type { Metadata } from "next";
 import CTABanner from "@/components/CTABanner";
 
 export const metadata: Metadata = {
-  title: "Milestone Title — Full-Service Title Company | South Florida",
+  title: "Milestone Title — Attorney-Supervised Title Company | South Florida",
   description:
-    "Milestone Title: over 20 years of full-service title insurance, title searches, closing coordination, and recording throughout South Florida.",
+    "Milestone Title: attorney-supervised title search, title insurance, escrow, and closings since 2002 — underwritten by Old Republic National Title Insurance Company. Calculators, a client portal with live closing tracking, and service in four languages at MilestoneTitleFL.com.",
 };
 
+// Milestone Title's dedicated platform. Flip to https://milestonetitlefl.com
+// once DNS is attached — one-line change.
+const TITLE_SITE = "https://milestonetitlefl.vercel.app";
+
 const services = [
-  { title: "Title Insurance", desc: "Owner's and lender's title insurance policies that protect your investment from undiscovered claims, liens, and defects." },
-  { title: "Title Searches", desc: "Comprehensive searches of public records to verify clear title and identify any issues before closing." },
-  { title: "Closing Coordination", desc: "End-to-end closing management — from document preparation to funds disbursement and recording." },
-  { title: "Recording Services", desc: "Accurate and timely recording of deeds, mortgages, and other documents with the county recorder's office." },
+  { title: "Title Search & Examination", desc: "Full public-records searches read under attorney supervision — ownership history, liens, judgments, and the issues that derail closings." },
+  { title: "Title Insurance", desc: "Owner's and lender's policies at Florida's promulgated rates, underwritten by Old Republic National Title Insurance Company." },
+  { title: "Closings & Settlement", desc: "Residential, commercial, cash, financed, probate, and trust closings — every file on a published ten-step timeline." },
+  { title: "Escrow Services", desc: "Segregated trust accounts, three-way reconciliation discipline, and verified wire procedures on every transfer." },
+  { title: "Municipal Lien Searches & Estoppels", desc: "Code violations, open permits, utility balances, and HOA/condo certificates — the five-figure surprises county records miss." },
+  { title: "Title Curative Work", desc: "Unreleased mortgages, probate gaps, judgment liens — triaged fast, with the law firm one hallway away for the legal cures." },
+  { title: "Recording Services", desc: "Deeds and mortgages e-recorded correctly and tracked to confirmation, with doc stamps computed county-correct." },
+  { title: "Remote Online Notarization", desc: "Close from anywhere on earth — identity-proofed, Florida-authorized, routine for our international and snowbird clients." },
+];
+
+const platform = [
+  { title: "Real closing-cost calculators", desc: "Florida promulgated premiums, the reissue credit, doc stamps with Miami-Dade's surtax rule — live, free, no email wall.", href: `${TITLE_SITE}/closing-cost-calculator`, cta: "Run your numbers" },
+  { title: "A portal with live tracking", desc: "Clients and Realtors watch their file move across the ten-step closing timeline — no status calls required.", href: `${TITLE_SITE}/portal`, cta: "See the portal" },
+  { title: "Florida Records Navigator", desc: "Official deed, plat, and property-record sources for all 67 Florida counties, mapped in one place.", href: `${TITLE_SITE}/records`, cta: "Browse all 67 counties" },
+  { title: "Transparent flat-band pricing", desc: "Published settlement-fee bands — identical for every client and every agent — plus bundle savings when the law firm handles the closing's legal work.", href: `${TITLE_SITE}/pricing`, cta: "See the pricing promise" },
 ];
 
 export default function TitleCompanyPage() {
@@ -22,8 +37,15 @@ export default function TitleCompanyPage() {
           <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-4">Title Services</p>
           <h1 className="text-5xl md:text-6xl text-white mb-4">Milestone Title</h1>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Full-service title insurance and closing coordination — serving South Florida&apos;s real estate market for over 20 years.
+            Attorney-supervised title, escrow, and closings since 2002 — underwritten by Old Republic National Title
+            Insurance Company, delivered in English, Español, Русский, and עברית from Hallandale Beach.
           </p>
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <a href={`${TITLE_SITE}/order-title`} className="btn-gold inline-block">Order Title</a>
+            <a href={`${TITLE_SITE}/closing-cost-calculator`} className="btn-gold-outline inline-block">
+              Calculate Closing Costs
+            </a>
+          </div>
         </div>
       </section>
 
@@ -31,7 +53,11 @@ export default function TitleCompanyPage() {
         <div className="container-site">
           <div className="max-w-3xl mx-auto mb-16">
             <p className="text-ink/70 text-lg leading-relaxed">
-              Milestone Title has been a trusted name in South Florida real estate for over two decades. We provide full-service title insurance, comprehensive title searches, seamless closing coordination, and accurate recording — ensuring every property transfer is clean, protected, and properly documented.
+              Most title companies can process a transaction. They cannot identify legal risk, draft legal documents,
+              or solve the legal problem stalling a closing. Milestone Title works under the supervision of our real
+              estate attorneys — so legal issues get spotted early, named honestly, and, when a file needs actual
+              legal work, handled under a separate engagement without leaving the building. That has been the model
+              since 2002.
             </p>
           </div>
 
@@ -48,9 +74,9 @@ export default function TitleCompanyPage() {
             <h3 className="text-2xl text-navy mb-4">Why Choose Milestone Title?</h3>
             <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
               {[
-                ["20+ Years", "Trusted experience in South Florida real estate"],
-                ["Attorney-Owned", "Backed by the legal expertise of Muroff, Milestone & Milestone"],
-                ["Full Service", "From search to closing to recording — we handle everything"],
+                ["Since 2002", "Two decades of South Florida closings from Hallandale Beach"],
+                ["Attorney-Owned", "Supervised by the real estate attorneys of Muroff, Milestone & Milestone"],
+                ["Old Republic", "Policies backed by one of the nation's largest title insurance underwriters"],
               ].map(([title, desc]) => (
                 <div key={title}>
                   <p className="text-2xl font-serif text-gold mb-2">{title}</p>
@@ -62,25 +88,68 @@ export default function TitleCompanyPage() {
         </div>
       </section>
 
-      {/* Photo section */}
+      {/* Platform */}
       <section className="py-20 bg-cream">
+        <div className="container-site">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-3">MilestoneTitleFL.com</p>
+            <h2 className="text-4xl text-navy font-serif mb-4">A full title platform, not just a title company</h2>
+            <p className="text-ink/60">
+              The title side of our practice now runs on its own dedicated platform — built for buyers, sellers,
+              Realtors, lenders, and investors.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {platform.map((p) => (
+              <div key={p.title} className="bg-white rounded-2xl p-8 border border-black/5">
+                <h3 className="text-xl text-navy mb-3">{p.title}</h3>
+                <p className="text-ink/60 leading-relaxed mb-4">{p.desc}</p>
+                <a href={p.href} className="text-gold font-semibold">
+                  {p.cta} →
+                </a>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-ink/50 text-sm mt-10 max-w-2xl mx-auto">
+            One promise worth memorizing: we will never email you a change to wire instructions. Before sending funds,
+            call 954.454.4522 and verify every digit by voice.
+          </p>
+        </div>
+      </section>
+
+      {/* The Milestone Complete */}
+      <section className="py-20">
         <div className="container-site">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl text-navy font-serif mb-6">Trusted Title Services for Every Transaction</h2>
+              <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-3">The Flagship Package</p>
+              <h2 className="text-4xl text-navy font-serif mb-6">The Milestone Complete: close it, protect it, pass it on</h2>
               <p className="text-ink/70 leading-relaxed mb-4">
-                From first-time homebuyers to seasoned investors, Milestone Title provides the expertise and attention to detail that South Florida real estate demands.
+                The closing table is the best estate-planning moment of your life — you are already deciding whose
+                name goes on the deed. The Milestone Complete pairs your closing with your estate plan: trusts,
+                wills, powers of attorney, Lady Bird deeds, and Florida homestead strategy at this firm&apos;s
+                published pricing, coordinated with the title work so the plan and the deed never contradict each
+                other.
               </p>
               <p className="text-ink/70 leading-relaxed mb-6">
-                Our attorney-owned title company means you get legal-grade precision at every step — title search, insurance, closing, and recording.
+                And every trust-based Complete includes <strong>TrusteeClear free for your trustee and successor
+                trustee</strong> — the Florida successor-trustee platform with plain-English duties, after-death
+                timelines, and homestead guidance for the person your plan puts in charge.
               </p>
-              <a href="/schedule/" className="btn-gold inline-block">Get a Title Quote</a>
+              <div className="flex flex-wrap gap-4">
+                <a href={`${TITLE_SITE}/milestone-complete`} className="btn-gold inline-block">
+                  Explore the Complete
+                </a>
+                <a href="/pricing/" className="btn-gold-outline inline-block">
+                  Our Published Legal Pricing
+                </a>
+              </div>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-xl border border-black/5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/family-8.png"
-                alt="Family receiving keys at real estate closing with Milestone Title"
+                alt="Multigenerational family at home in South Florida — the Milestone Complete protects the house and the plan together"
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -88,7 +157,10 @@ export default function TitleCompanyPage() {
         </div>
       </section>
 
-      <CTABanner title="Need Title Services?" subtitle="Contact us for a quote on title insurance, title searches, or closing coordination." />
+      <CTABanner
+        title="Start Your Closing — or Your Complete"
+        subtitle="Order title in three minutes at MilestoneTitleFL.com, or call 954.454.4522 and say 'the Complete.'"
+      />
 
       <script
         type="application/ld+json"
@@ -98,8 +170,10 @@ export default function TitleCompanyPage() {
             "@type": "Service",
             name: "Milestone Title",
             provider: { "@type": "LegalService", name: "Muroff, Milestone & Milestone, P.A." },
-            description: "Full-service title insurance, title searches, closing coordination, and recording services.",
+            description:
+              "Attorney-supervised title search, title insurance, escrow, settlement, and recording services since 2002, underwritten by Old Republic National Title Insurance Company.",
             areaServed: "South Florida",
+            url: "https://milestonetitlefl.com/",
           }),
         }}
       />
