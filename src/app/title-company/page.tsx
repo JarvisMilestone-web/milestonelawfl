@@ -17,7 +17,7 @@ const services = [
   { title: "Closings & Settlement", desc: "Residential, commercial, cash, financed, probate, and trust closings — every file on a published ten-step timeline." },
   { title: "Escrow Services", desc: "Segregated trust accounts, three-way reconciliation discipline, and verified wire procedures on every transfer." },
   { title: "Municipal Lien Searches & Estoppels", desc: "Code violations, open permits, utility balances, and HOA/condo certificates — the five-figure surprises county records miss." },
-  { title: "Title Curative Work", desc: "Unreleased mortgages, probate gaps, judgment liens — triaged fast, with the law firm one hallway away for the legal cures." },
+  { title: "Title Curative Work", desc: "Unreleased mortgages, probate gaps, judgment liens — triaged fast, with an honest read on which cures need separately engaged legal help." },
   { title: "Recording Services", desc: "Deeds and mortgages e-recorded correctly and tracked to confirmation, with doc stamps computed county-correct." },
   { title: "Remote Online Notarization", desc: "Close from anywhere on earth — identity-proofed, Florida-authorized, routine for our international and snowbird clients." },
 ];
@@ -53,11 +53,13 @@ export default function TitleCompanyPage() {
         <div className="container-site">
           <div className="max-w-3xl mx-auto mb-16">
             <p className="text-ink/70 text-lg leading-relaxed">
-              Most title companies can process a transaction. They cannot identify legal risk, draft legal documents,
-              or solve the legal problem stalling a closing. Milestone Title works under the supervision of our real
-              estate attorneys — so legal issues get spotted early, named honestly, and, when a file needs actual
-              legal work, handled under a separate engagement without leaving the building. That has been the model
-              since 2002.
+              Most title companies can process a transaction. They cannot identify legal risk. Milestone Title works
+              under the supervision of real estate attorneys — so legal issues get spotted early and named honestly.
+              When a file needs actual legal work, that work is never automatic: it is procured separately and
+              directly from this firm, under its own written engagement and at additional fees the firm determines —
+              or from any attorney the client chooses. Milestone Title, Co. and Muroff, Milestone &amp; Milestone,
+              P.A. are separate entities, each solely responsible for its own services. That has been the model since
+              2002.
             </p>
           </div>
 

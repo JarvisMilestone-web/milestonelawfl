@@ -4,7 +4,7 @@ import CTABanner from "@/components/CTABanner";
 export const metadata: Metadata = {
   title: "The Milestone Complete — Close It. Protect It. Pass It On.",
   description:
-    "One package, one roof: your closing through Milestone Title (underwritten by Old Republic), your estate plan — trusts, wills, deeds, homestead protection — at our published pricing, and TrusteeClear free for your trustee and successor trustee.",
+    "One coordinated package, two separate firms: your closing through Milestone Title (underwritten by Old Republic), your estate plan — trusts, wills, deeds, homestead protection — engaged directly with this firm at published pricing, and TrusteeClear free for your trustee and successor trustee.",
 };
 
 // Milestone Title's dedicated platform. Flip to https://milestonetitlefl.com
@@ -44,8 +44,8 @@ export default function MilestoneCompletePage() {
           <h1 className="text-5xl md:text-6xl text-white mb-4">The Milestone Complete</h1>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
             Close it. Protect it. Pass it on. Your closing, your estate plan, and free TrusteeClear for the person
-            your plan puts in charge — one roof, one coordinated team. No other firm in Florida is built to offer
-            this.
+            your plan puts in charge — two specialized firms, separately engaged, deliberately coordinated. No one
+            else in Florida is built to offer this.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             <a href="/schedule/" className="btn-gold inline-block">Book a Free Consultation</a>
@@ -92,10 +92,13 @@ export default function MilestoneCompletePage() {
               ))}
             </div>
             <p className="text-ink/50 text-xs text-center mt-8 max-w-2xl mx-auto">
-              Legal services are engaged with Muroff, Milestone &amp; Milestone, P.A. under a written scope. Title and
-              settlement services are provided by Milestone Title, Co. Bundle savings apply to service and legal fees
-              — never the state-promulgated title premium, which no one may discount. Every component is optional and
-              available separately. TrusteeClear is a technology platform, not legal advice.
+              Milestone Title, Co. and Muroff, Milestone &amp; Milestone, P.A. are separate entities; each is solely
+              responsible for its own services, and neither is liable for the services of the other. Legal services
+              are never automatic — they are engaged directly with the law firm under a written scope, at fees the
+              firm determines, only if you choose to engage it. Title and settlement services are provided by
+              Milestone Title, Co. Bundle savings apply to service and legal fees — never the state-promulgated title
+              premium, which no one may discount. Every component is optional and available separately. TrusteeClear
+              is a technology platform, not legal advice.
             </p>
           </div>
         </div>
