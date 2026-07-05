@@ -77,7 +77,7 @@ export default function TitleCompanyPage() {
             <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
               {[
                 ["Since 2002", "Two decades of South Florida closings from Hallandale Beach"],
-                ["Attorney-Owned", "Supervised by the real estate attorneys of Muroff, Milestone & Milestone"],
+                ["Attorney-Founded", "Started by Florida real estate attorneys — held to attorney-supervised standards"],
                 ["Old Republic", "Policies backed by one of the nation's largest title insurance underwriters"],
               ].map(([title, desc]) => (
                 <div key={title}>
