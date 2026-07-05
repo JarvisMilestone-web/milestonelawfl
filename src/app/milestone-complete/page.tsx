@@ -18,7 +18,7 @@ const pillars = [
   },
   {
     title: "The Protection — This Firm",
-    desc: "Trusts, wills, powers of attorney, healthcare directives, Lady Bird deeds, and Florida homestead strategy — at the published pricing on our Pricing page, engaged directly with the attorneys who supervise the title work.",
+    desc: "Trusts, wills, powers of attorney, healthcare directives, Lady Bird deeds, and Florida homestead strategy — engaged directly with this firm at the published pricing on our Pricing page, as a separate engagement coordinated with the closing's calendar.",
   },
   {
     title: "The Aftercare — TrusteeClear, Free",
