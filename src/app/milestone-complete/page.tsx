@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { KeyRound, ShieldCheck, Sparkles } from "lucide-react";
 import CTABanner from "@/components/CTABanner";
 
 export const metadata: Metadata = {
@@ -35,31 +36,37 @@ const planPricing = [
   ["Deed into Trust", "$400–$495 + recording"],
 ];
 
+const pillarIcons = [KeyRound, ShieldCheck, Sparkles];
+
 export default function MilestoneCompletePage() {
   return (
     <>
-      <section className="section-navy py-20">
-        <div className="container-site text-center">
-          <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-4">The Flagship Package</p>
-          <h1 className="text-5xl md:text-6xl text-white mb-4">The Milestone Complete</h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+      <section className="section-navy relative overflow-hidden py-24 md:py-28">
+        <div className="survey-grid absolute inset-0" aria-hidden />
+        <div className="container-site relative text-center">
+          <span className="badge-gold mb-6">
+            <Sparkles size={12} aria-hidden />
+            The Flagship Package
+          </span>
+          <h1 className="font-serif text-4xl text-white md:text-6xl">The Milestone Complete</h1>
+          <p className="lede mx-auto mt-5 max-w-2xl">
             Close it. Protect it. Pass it on. Your closing, your estate plan, and free TrusteeClear for the person
             your plan puts in charge — two specialized firms, separately engaged, deliberately coordinated. No one
             else in Florida is built to offer this.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <a href="/schedule/" className="btn-gold inline-block">Book a Free Consultation</a>
-            <a href={`${TITLE_SITE}/milestone-complete`} className="btn-gold-outline inline-block">
+          <div className="mt-9 flex flex-wrap justify-center gap-4">
+            <a href="/schedule/" className="btn-gold">Book a Free Consultation</a>
+            <a href={`${TITLE_SITE}/milestone-complete`} className="btn-gold-outline">
               Explore the Full Package
             </a>
           </div>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="section-cream py-20 md:py-24">
         <div className="container-site">
-          <div className="max-w-3xl mx-auto mb-16 text-center">
-            <p className="text-ink/70 text-lg leading-relaxed">
+          <div className="mx-auto mb-16 max-w-3xl text-center">
+            <p className="lede">
               The closing table is the best estate-planning moment of your life — you are already deciding whose name
               goes on the deed, and every question a plan answers is being answered whether you plan it or not. The
               Complete makes those answers deliberate: the vesting, the deed, the homestead strategy, and the trust
@@ -67,31 +74,38 @@ export default function MilestoneCompletePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {pillars.map((p) => (
-              <div key={p.title} className="bg-white rounded-2xl p-8 border border-black/5">
-                <h3 className="text-xl text-navy mb-3">{p.title}</h3>
-                <p className="text-ink/60 leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
+          <div className="mb-16 grid gap-6 md:grid-cols-3">
+            {pillars.map((p, i) => {
+              const Icon = pillarIcons[i];
+              return (
+                <div key={p.title} className="card card-hover p-8">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-gold-500/25 bg-gold-500/10 text-gold-600">
+                    <Icon size={22} aria-hidden />
+                  </span>
+                  <h3 className="mt-5 font-serif text-xl text-navy-800">{p.title}</h3>
+                  <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-500">{p.desc}</p>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="bg-cream-warm rounded-2xl p-8 md:p-12">
-            <h3 className="text-2xl text-navy mb-2 text-center">The estate-planning side, at our published pricing</h3>
-            <p className="text-ink/60 text-center text-sm mb-8">
+          <div className="card-navy p-8 md:p-12">
+            <h3 className="text-center font-serif text-3xl text-white">The estate-planning side, at our published pricing</h3>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-white/65">
               These are this firm&apos;s published legal fees — the same ones on our{" "}
-              <a href="/pricing/" className="text-gold font-semibold">Pricing page</a>. Nothing invented, nothing
+              <a href="/pricing/" className="font-semibold text-gold-300 no-underline transition-colors hover:text-gold-200">Pricing page</a>. Nothing invented, nothing
               blurred.
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="mx-auto mt-6 hairline-gold w-24" aria-hidden />
+            <div className="mx-auto mt-10 grid max-w-4xl gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
               {planPricing.map(([name, price]) => (
                 <div key={name} className="text-center">
-                  <p className="text-ink/70 text-sm mb-1">{name}</p>
-                  <p className="text-2xl font-serif text-gold">{price}</p>
+                  <p className="text-sm text-white/65">{name}</p>
+                  <p className="mt-1.5 font-serif text-3xl text-white md:text-4xl">{price}</p>
                 </div>
               ))}
             </div>
-            <p className="text-ink/50 text-xs text-center mt-8 max-w-2xl mx-auto">
+            <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-white/45">
               Milestone Title, Co. and Muroff, Milestone &amp; Milestone, P.A. are separate entities; each is solely
               responsible for its own services, and neither is liable for the services of the other. Legal services
               are never automatic — they are engaged directly with the law firm under a written scope, at fees the
@@ -104,29 +118,29 @@ export default function MilestoneCompletePage() {
         </div>
       </section>
 
-      <section className="py-20 bg-cream">
+      <section className="bg-ivory-200 py-20 md:py-24">
         <div className="container-site">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid items-center gap-12 md:grid-cols-2">
             <div>
-              <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-3">Included Free</p>
-              <h2 className="text-4xl text-navy font-serif mb-6">
+              <p className="eyebrow">Included Free</p>
+              <h2 className="mt-4 font-serif text-4xl leading-tight text-navy-800">
                 TrusteeClear: because a trust is only as strong as your trustee
               </h2>
-              <p className="text-ink/70 leading-relaxed mb-4">
+              <p className="mt-5 leading-relaxed text-ink-500">
                 The hardest day of a trust&apos;s life is the day someone has to run it. TrusteeClear — the Florida
                 successor-trustee platform — gives your trustee and successor trustee guided duties, after-death
                 checklists and timelines, notice-of-trust and homestead-after-death direction, and a clear path to
                 attorney review when judgment calls appear.
               </p>
-              <p className="text-ink/70 leading-relaxed mb-6">
+              <p className="mt-4 leading-relaxed text-ink-500">
                 It is included free with every trust-based Complete — our gift to the person who will carry your
                 plan.
               </p>
-              <a href="https://trusteeclear.com" className="btn-gold inline-block" target="_blank" rel="noopener noreferrer">
+              <a href="https://trusteeclear.com" className="btn-gold mt-8" target="_blank" rel="noopener noreferrer">
                 See TrusteeClear
               </a>
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-xl border border-black/5">
+            <div className="overflow-hidden rounded-2xl border border-gold-500/20 shadow-card-hover">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/family-1.png"

@@ -48,47 +48,47 @@ const team = [
 export default function AttorneysPage() {
   return (
     <>
-      <section className="section-navy py-20">
-        <div className="container-site text-center">
-          <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-4">Our Team</p>
-          <h1 className="text-5xl md:text-6xl text-white mb-4">Meet the Attorneys</h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+      {/* Hero */}
+      <section className="section-navy relative overflow-hidden py-24 md:py-28">
+        <div className="survey-grid absolute inset-0" aria-hidden />
+        <div className="container-site relative text-center">
+          <span className="badge-gold">Our Team</span>
+          <h1 className="mt-6 font-serif text-4xl md:text-6xl text-white">Meet the Attorneys</h1>
+          <p className="lede mx-auto mt-5 max-w-2xl">
             A team with deep roots in South Florida — committed to protecting your family and your future.
           </p>
         </div>
       </section>
 
-      <section className="py-20 bg-cream">
+      {/* Team grid */}
+      <section className="section-cream py-20 md:py-24">
         <div className="container-site">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-2">
             {team.map((t) => (
-              <div
-                key={t.name}
-                className="bg-white rounded-2xl p-8 border border-black/5 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col items-center"
-              >
+              <div key={t.name} className="card card-hover flex flex-col items-center p-8 text-center">
                 {/* Avatar */}
-                <div className="w-24 h-24 rounded-full border-2 border-gold/40 bg-cream-warm flex items-center justify-center mb-5 shrink-0">
-                  <span className="font-serif font-bold text-navy text-2xl">
+                <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full border-2 border-gold-500/40 bg-ivory-200">
+                  <span className="font-serif text-xl font-bold text-navy-800">
                     {t.name.split(" ").map((n: string) => n[0]).slice(0, 2).join("")}
                   </span>
                 </div>
 
                 {/* Name */}
-                <h2 className="text-xl font-bold text-navy mb-2">{t.name}</h2>
+                <h2 className="font-serif text-xl text-navy-800">{t.name}</h2>
 
                 {/* Bar badge */}
                 {t.bar && (
-                  <span className="inline-block bg-gold/10 text-gold/80 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                  <span className="mt-1.5 inline-block rounded-full bg-gold-500/10 px-3 py-1 text-xs font-semibold text-gold-600">
                     {t.bar}
                   </span>
                 )}
 
                 {/* Role */}
-                <p className="text-navy/80 font-semibold text-sm mb-1">{t.role}</p>
-                <p className="text-ink/50 text-xs mb-4">{t.years}</p>
+                <p className="mt-3 text-sm font-semibold text-navy-700">{t.role}</p>
+                <p className="mt-1 text-xs text-ink-400">{t.years}</p>
 
                 {/* Bio */}
-                <p className="text-ink/65 text-sm leading-relaxed">{t.bio}</p>
+                <p className="mt-4 text-sm leading-relaxed text-ink-500">{t.bio}</p>
               </div>
             ))}
           </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CTABanner from "@/components/CTABanner";
+import { Clock3, FileText, House, ScrollText, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Pricing — Muroff, Milestone & Milestone, P.A.",
@@ -50,71 +51,95 @@ const packages = [
   },
 ];
 
+const categoryIcons = [ScrollText, ShieldCheck, FileText, House];
+
 export default function PricingPage() {
   return (
     <>
-      <section className="section-navy py-20">
-        <div className="container-site text-center">
-          <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-4">Transparent Pricing</p>
-          <h1 className="text-5xl md:text-6xl text-white mb-4">Flat-Fee Pricing</h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+      {/* Hero */}
+      <section className="section-navy relative overflow-hidden py-24 md:py-28">
+        <div className="survey-grid absolute inset-0" aria-hidden />
+        <div className="container-site relative text-center">
+          <span className="badge-gold">Transparent Pricing</span>
+          <h1 className="mt-6 font-serif text-4xl md:text-6xl text-white">Flat-Fee Pricing</h1>
+          <p className="lede mx-auto mt-5 max-w-2xl">
             No surprises, no hourly billing. All standard estate planning matters are quoted at your free consultation with a flat fee you can count on.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Fee schedule */}
+      <section className="section-cream py-20 md:py-24">
         <div className="container-site">
-          <div className="space-y-16">
-            {packages.map((pkg) => (
-              <div key={pkg.category}>
-                <h2 className="text-3xl text-navy mb-8">{pkg.category}</h2>
-                <div className="space-y-3">
-                  {pkg.items.map((item) => (
-                    <div
-                      key={item.name}
-                      className={`flex flex-col sm:flex-row sm:items-center justify-between rounded-xl p-5 border ${
-                        "popular" in item && item.popular
-                          ? "border-gold bg-gold/5"
-                          : "border-black/5 bg-white"
-                      }`}
-                    >
-                      <div>
-                        <p className="font-semibold text-navy flex items-center gap-2">
-                          {item.name}
-                          {"popular" in item && item.popular && (
-                            <span className="bg-gold text-white text-xs font-semibold px-2 py-0.5 rounded-full">
-                              Most Popular
-                            </span>
+          <div className="space-y-20">
+            {packages.map((pkg, i) => {
+              const Icon = categoryIcons[i];
+              return (
+                <div key={pkg.category}>
+                  <div className="text-center">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-gold-500/25 bg-gold-500/10 text-gold-600">
+                      <Icon size={22} aria-hidden />
+                    </span>
+                    <h2 className="mt-5 font-serif text-3xl text-navy-800 md:text-4xl">{pkg.category}</h2>
+                    <div className="mx-auto mt-6 hairline-gold w-24" />
+                  </div>
+                  <div className="mx-auto mt-10 grid max-w-4xl gap-6 sm:grid-cols-2">
+                    {pkg.items.map((item) => {
+                      const popular = "popular" in item && item.popular;
+                      return (
+                        <div
+                          key={item.name}
+                          className={
+                            popular
+                              ? "card-navy border border-gold-500/40 p-8"
+                              : "card card-hover p-8"
+                          }
+                        >
+                          {popular && <span className="badge-gold mb-4">Most Popular</span>}
+                          <p className={`font-semibold ${popular ? "text-white" : "text-navy-800"}`}>
+                            {item.name}
+                          </p>
+                          <p className={`mt-4 font-serif text-4xl ${popular ? "text-gold-200" : "text-navy-800"}`}>
+                            {item.price}
+                          </p>
+                          {"note" in item && item.note && (
+                            <p className={`mt-3 text-sm ${popular ? "text-white/60" : "text-ink-400"}`}>
+                              {item.note}
+                            </p>
                           )}
-                        </p>
-                        {"note" in item && item.note && (
-                          <p className="text-ink/50 text-sm">{item.note}</p>
-                        )}
-                      </div>
-                      <p className="text-gold font-serif text-2xl mt-2 sm:mt-0 whitespace-nowrap">{item.price}</p>
-                    </div>
-                  ))}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Hourly rate */}
+      <section className="bg-ivory-200 py-20 md:py-24">
+        <div className="container-site">
+          <div className="card mx-auto max-w-2xl p-8 text-center md:p-12">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-gold-500/25 bg-gold-500/10 text-gold-600">
+              <Clock3 size={22} aria-hidden />
+            </span>
+            <h3 className="mt-5 font-serif text-2xl text-navy-800">Hourly Rate</h3>
+            <p className="mt-3 font-serif text-4xl text-navy-800">$275/hr</p>
+            <div className="mx-auto mt-6 hairline-gold w-24" />
+            <p className="mt-6 leading-relaxed text-ink-500">
+              For non-flat-fee matters only — which are rare. The vast majority of our work is quoted as a flat fee at your free consultation.
+            </p>
           </div>
 
-          <div className="mt-12 bg-cream-warm rounded-2xl p-8 md:p-12">
-            <div className="max-w-2xl mx-auto text-center">
-              <h3 className="text-2xl text-navy mb-4">Hourly Rate</h3>
-              <p className="text-4xl font-serif text-gold mb-4">$275/hr</p>
-              <p className="text-ink/60 leading-relaxed">
-                For non-flat-fee matters only — which are rare. The vast majority of our work is quoted as a flat fee at your free consultation.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <p className="text-ink/50 text-sm mb-6">
+          <div className="mt-12 text-center">
+            <p className="text-sm text-ink-400">
               All fees are flat-fee and quoted at your free consultation. No hourly billing on standard estate planning matters.
             </p>
-            <Link href="/schedule/" className="btn-gold">Schedule Your Free Consultation</Link>
+            <div className="mt-6">
+              <Link href="/schedule/" className="btn-gold">Schedule Your Free Consultation</Link>
+            </div>
           </div>
         </div>
       </section>

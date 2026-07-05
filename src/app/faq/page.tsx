@@ -1,5 +1,3 @@
-"use client";
-import { useState } from "react";
 import CTABanner from "@/components/CTABanner";
 
 const faqs = [
@@ -45,44 +43,32 @@ const faqs = [
   },
 ];
 
-function FAQItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border border-black/5 rounded-xl overflow-hidden bg-white">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between p-6 text-left bg-transparent border-none cursor-pointer"
-      >
-        <span className="font-semibold text-navy text-lg pr-4">{q}</span>
-        <span className="text-gold text-2xl shrink-0">{open ? "−" : "+"}</span>
-      </button>
-      {open && (
-        <div className="px-6 pb-6">
-          <p className="text-ink/70 leading-relaxed">{a}</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function FAQPage() {
   return (
     <>
-      <section className="bg-navy py-20">
-        <div className="container-site text-center">
-          <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-4">Questions & Answers</p>
-          <h1 className="text-5xl md:text-6xl text-white mb-4 font-serif">Frequently Asked Questions</h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+      {/* Hero */}
+      <section className="section-navy relative overflow-hidden py-24 md:py-28">
+        <div className="survey-grid absolute inset-0" aria-hidden />
+        <div className="container-site relative text-center">
+          <span className="badge-gold">Questions & Answers</span>
+          <h1 className="mt-6 font-serif text-4xl md:text-6xl text-white">Frequently Asked Questions</h1>
+          <p className="lede mx-auto mt-5 max-w-2xl">
             Answers to the most common questions about estate planning, trusts, real estate law, and our services.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container-site max-w-3xl mx-auto space-y-4">
-          {faqs.map((f) => (
-            <FAQItem key={f.q} q={f.q} a={f.a} />
-          ))}
+      {/* Accordions */}
+      <section className="section-cream py-20 md:py-24">
+        <div className="container-site">
+          <div className="mx-auto max-w-3xl space-y-4">
+            {faqs.map((f) => (
+              <details key={f.q} className="faq-item">
+                <summary>{f.q}</summary>
+                <div className="px-5 pb-5 text-ink-500 leading-relaxed">{f.a}</div>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 

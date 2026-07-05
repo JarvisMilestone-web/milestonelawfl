@@ -1,4 +1,18 @@
 import type { Metadata } from "next";
+import {
+  Activity,
+  BadgeDollarSign,
+  Building2,
+  Calculator,
+  FileSearch,
+  Globe,
+  KeyRound,
+  Landmark,
+  Map,
+  Scale,
+  ScrollText,
+  ShieldCheck,
+} from "lucide-react";
 import CTABanner from "@/components/CTABanner";
 
 export const metadata: Metadata = {
@@ -29,30 +43,37 @@ const platform = [
   { title: "Transparent flat-band pricing", desc: "Published settlement-fee bands — identical for every client and every agent — plus bundle savings when the law firm handles the closing's legal work.", href: `${TITLE_SITE}/pricing`, cta: "See the pricing promise" },
 ];
 
+const serviceIcons = [FileSearch, ShieldCheck, KeyRound, Landmark, Building2, Scale, ScrollText, Globe];
+const platformIcons = [Calculator, Activity, Map, BadgeDollarSign];
+
 export default function TitleCompanyPage() {
   return (
     <>
-      <section className="section-navy py-20">
-        <div className="container-site text-center">
-          <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-4">Title Services</p>
-          <h1 className="text-5xl md:text-6xl text-white mb-4">Milestone Title</h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+      <section className="section-navy relative overflow-hidden py-24 md:py-28">
+        <div className="survey-grid absolute inset-0" aria-hidden />
+        <div className="container-site relative text-center">
+          <span className="badge-gold mb-6">
+            <KeyRound size={12} aria-hidden />
+            Title Services
+          </span>
+          <h1 className="font-serif text-4xl text-white md:text-6xl">Milestone Title</h1>
+          <p className="lede mx-auto mt-5 max-w-2xl">
             Attorney-supervised title, escrow, and closings since 2002 — underwritten by Old Republic National Title
             Insurance Company, delivered in English, Español, Русский, and עברית from Hallandale Beach.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <a href={`${TITLE_SITE}/order-title`} className="btn-gold inline-block">Order Title</a>
-            <a href={`${TITLE_SITE}/closing-cost-calculator`} className="btn-gold-outline inline-block">
+          <div className="mt-9 flex flex-wrap justify-center gap-4">
+            <a href={`${TITLE_SITE}/order-title`} className="btn-gold">Order Title</a>
+            <a href={`${TITLE_SITE}/closing-cost-calculator`} className="btn-gold-outline">
               Calculate Closing Costs
             </a>
           </div>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="section-cream py-20 md:py-24">
         <div className="container-site">
-          <div className="max-w-3xl mx-auto mb-16">
-            <p className="text-ink/70 text-lg leading-relaxed">
+          <div className="mx-auto mb-16 max-w-3xl">
+            <p className="lede">
               Most title companies can process a transaction. They cannot identify legal risk. Milestone Title works
               under the supervision of real estate attorneys — so legal issues get spotted early and named honestly.
               When a file needs actual legal work, that work is never automatic: it is procured separately and
@@ -63,26 +84,33 @@ export default function TitleCompanyPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {services.map((s) => (
-              <div key={s.title} className="bg-white rounded-2xl p-8 border border-black/5">
-                <h3 className="text-xl text-navy mb-3">{s.title}</h3>
-                <p className="text-ink/60 leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
+          <div className="mb-16 grid gap-6 md:grid-cols-2">
+            {services.map((s, i) => {
+              const Icon = serviceIcons[i];
+              return (
+                <div key={s.title} className="card card-hover p-8">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-gold-500/25 bg-gold-500/10 text-gold-600">
+                    <Icon size={22} aria-hidden />
+                  </span>
+                  <h3 className="mt-5 font-serif text-xl text-navy-800">{s.title}</h3>
+                  <p className="mt-3 leading-relaxed text-ink-500">{s.desc}</p>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="bg-cream-warm rounded-2xl p-8 md:p-12 text-center">
-            <h3 className="text-2xl text-navy mb-4">Why Choose Milestone Title?</h3>
-            <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <div className="card-navy p-8 text-center md:p-12">
+            <h3 className="font-serif text-3xl text-white">Why Choose Milestone Title?</h3>
+            <div className="mx-auto mt-5 hairline-gold w-24" aria-hidden />
+            <div className="mx-auto mt-8 grid max-w-3xl gap-8 sm:grid-cols-3">
               {[
                 ["Since 2002", "Two decades of South Florida closings from Hallandale Beach"],
                 ["Attorney-Founded", "Started by Florida real estate attorneys — held to attorney-supervised standards"],
                 ["Old Republic", "Policies backed by one of the nation's largest title insurance underwriters"],
               ].map(([title, desc]) => (
                 <div key={title}>
-                  <p className="text-2xl font-serif text-gold mb-2">{title}</p>
-                  <p className="text-ink/60 text-sm">{desc}</p>
+                  <p className="font-serif text-2xl text-gold-300">{title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/65">{desc}</p>
                 </div>
               ))}
             </div>
@@ -91,63 +119,73 @@ export default function TitleCompanyPage() {
       </section>
 
       {/* Platform */}
-      <section className="py-20 bg-cream">
+      <section className="bg-ivory-200 py-20 md:py-24">
         <div className="container-site">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-3">MilestoneTitleFL.com</p>
-            <h2 className="text-4xl text-navy font-serif mb-4">A full title platform, not just a title company</h2>
-            <p className="text-ink/60">
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="eyebrow">MilestoneTitleFL.com</p>
+            <h2 className="mt-3 font-serif text-4xl text-navy-800 md:text-5xl">A full title platform, not just a title company</h2>
+            <div className="mx-auto mt-6 hairline-gold w-24" aria-hidden />
+            <p className="mt-6 leading-relaxed text-ink-500">
               The title side of our practice now runs on its own dedicated platform — built for buyers, sellers,
               Realtors, lenders, and investors.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {platform.map((p) => (
-              <div key={p.title} className="bg-white rounded-2xl p-8 border border-black/5">
-                <h3 className="text-xl text-navy mb-3">{p.title}</h3>
-                <p className="text-ink/60 leading-relaxed mb-4">{p.desc}</p>
-                <a href={p.href} className="text-gold font-semibold">
-                  {p.cta} →
-                </a>
-              </div>
-            ))}
+          <div className="grid gap-6 md:grid-cols-2">
+            {platform.map((p, i) => {
+              const Icon = platformIcons[i];
+              return (
+                <div key={p.title} className="card card-hover p-8">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-gold-500/25 bg-gold-500/10 text-gold-600">
+                    <Icon size={22} aria-hidden />
+                  </span>
+                  <h3 className="mt-5 font-serif text-xl text-navy-800">{p.title}</h3>
+                  <p className="mt-3 leading-relaxed text-ink-500">{p.desc}</p>
+                  <a href={p.href} className="mt-5 inline-block font-semibold text-gold-600 no-underline transition-colors hover:text-gold-500">
+                    {p.cta} →
+                  </a>
+                </div>
+              );
+            })}
           </div>
-          <p className="text-center text-ink/50 text-sm mt-10 max-w-2xl mx-auto">
-            One promise worth memorizing: we will never email you a change to wire instructions. Before sending funds,
-            call 954.454.4522 and verify every digit by voice.
-          </p>
+          <div className="mx-auto mt-12 max-w-2xl">
+            <div className="hairline-gold" aria-hidden />
+            <p className="mt-6 text-center text-sm leading-relaxed text-ink-500">
+              One promise worth memorizing: we will never email you a change to wire instructions. Before sending funds,
+              call 954.454.4522 and verify every digit by voice.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* The Milestone Complete */}
-      <section className="py-20">
+      <section className="section-cream py-20 md:py-24">
         <div className="container-site">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid items-center gap-12 md:grid-cols-2">
             <div>
-              <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-3">The Flagship Package</p>
-              <h2 className="text-4xl text-navy font-serif mb-6">The Milestone Complete: close it, protect it, pass it on</h2>
-              <p className="text-ink/70 leading-relaxed mb-4">
+              <p className="eyebrow">The Flagship Package</p>
+              <h2 className="mt-4 font-serif text-4xl leading-tight text-navy-800">The Milestone Complete: close it, protect it, pass it on</h2>
+              <p className="mt-5 leading-relaxed text-ink-500">
                 The closing table is the best estate-planning moment of your life — you are already deciding whose
                 name goes on the deed. The Milestone Complete pairs your closing with your estate plan: trusts,
                 wills, powers of attorney, Lady Bird deeds, and Florida homestead strategy at this firm&apos;s
                 published pricing, coordinated with the title work so the plan and the deed never contradict each
                 other.
               </p>
-              <p className="text-ink/70 leading-relaxed mb-6">
+              <p className="mt-4 leading-relaxed text-ink-500">
                 And every trust-based Complete includes <strong>TrusteeClear free for your trustee and successor
                 trustee</strong> — the Florida successor-trustee platform with plain-English duties, after-death
                 timelines, and homestead guidance for the person your plan puts in charge.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <a href={`${TITLE_SITE}/milestone-complete`} className="btn-gold inline-block">
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a href={`${TITLE_SITE}/milestone-complete`} className="btn-gold">
                   Explore the Complete
                 </a>
-                <a href="/pricing/" className="btn-gold-outline inline-block">
+                <a href="/pricing/" className="btn-outline-dark">
                   Our Published Legal Pricing
                 </a>
               </div>
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-xl border border-black/5">
+            <div className="overflow-hidden rounded-2xl border border-gold-500/20 shadow-card-hover">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/family-8.png"
